@@ -30,7 +30,7 @@ const Home = () => {
       </button>
 
       <div className="pt-12">
-        <a href="">
+        <a href="#process">
           <button className="border-2 border-black p-3 rounded-full">
             <img
               src={ArrowDown}
