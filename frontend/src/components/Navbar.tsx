@@ -1,4 +1,5 @@
 import React from 'react'
+import Logo from '../assets/MindMap.png'
 
 import styles from '../styles/Navbar.module.css'
 
@@ -6,12 +7,12 @@ const navLinks = [
     {
         name: 'Link',
         url: '/',
-        icon: '',
+        icon: Logo,
     },
     {
         name: 'Explore Product',
         url: '/generation',
-        className: styles.exploreproducts,
+        className: styles.exploreproduct,
     },
     {
         name: 'Login',
