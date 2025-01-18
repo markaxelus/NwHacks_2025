@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import  Navbar  from './components/Navbar'
+import UpArrow from './components/UpArrow'
 
 import Home from './pages/Home' 
 import Process from './pages/Process'
@@ -31,7 +32,7 @@ createRoot(document.getElementById('root')!).render(
           }
         />
       </Routes>
-
+      <UpArrow />
     </BrowserRouter>
   </StrictMode>,
 )
