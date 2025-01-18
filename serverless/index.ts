@@ -2,7 +2,6 @@ import { GetParameterCommand, SSMClient } from "@aws-sdk/client-ssm";
 import { ChatOpenAI } from "@langchain/openai";
 import dotenv from "dotenv";
 import {
-  // EXTRACT_KEY_INFO_PROMPT,
   GENERATE_MERMAID_PROMPT,
   GENERATE_SUMMARY_PROMPT,
 } from "./systemPrompts.ts";
@@ -61,42 +60,28 @@ export async function handler(event: any) {
     const props: Props = JSON.parse(event.body);
     const aiModel = await getAiModel();
 
-    const keyInfoPrompt = getSystemPrompt(
+    const diagramPrompt = getSystemPrompt(
       { inputText: props.inputText },
       GENERATE_MERMAID_PROMPT.template
     );
 
     // delete this line
-    console.log("First AI prompt:", keyInfoPrompt);
+    console.log("First AI prompt:", diagramPrompt);
 
-    const firstResponse = await aiModel.invoke([
-      { role: "system", content: keyInfoPrompt },
+    const diagramResponse = await aiModel.invoke([
+      { role: "system", content: diagramPrompt },
     ]);
 
-    const keyInfoOutput =
-      typeof firstResponse.content === "string"
-        ? firstResponse.content
-        : JSON.stringify(firstResponse.content);
+    const diagramOutput =
+      typeof diagramResponse.content === "string"
+        ? diagramResponse.content
+        : JSON.stringify(diagramResponse.content);
 
     // delete this line
-    console.log("First AI response:", keyInfoOutput);
-
-    // const diagramPrompt = getSystemPrompt(
-    //   { extractedInfo: keyInfoOutput },
-    //   GENERATE_MERMAID_PROMPT.template
-    // );
-
-    // const diagramResponse = await aiModel.invoke([
-    //   { role: "system", content: diagramPrompt },
-    // ]);
-
-    // const diagramOutput = diagramResponse.content;
-
-    // // delete this line
-    // console.log("Second AI response:", diagramOutput);
+    console.log("First AI response:", diagramOutput);
 
     const summaryPrompt = getSystemPrompt(
-      { extractedInfo: keyInfoOutput },
+      { extractedInfo: diagramOutput },
       GENERATE_SUMMARY_PROMPT.template
     );
 
@@ -112,7 +97,7 @@ export async function handler(event: any) {
     return {
       statusCode: 200,
       body: JSON.stringify({
-        firstOutput: keyInfoOutput,
+        firstOutput: diagramOutput,
         secondOutput: summaryOutput,
       }),
     };
