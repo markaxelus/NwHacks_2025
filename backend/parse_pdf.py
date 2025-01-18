@@ -25,3 +25,24 @@ def extract_text(input_doc, output_dir) -> None:
     except Exception as e:
         print(f"Error extracting text from the pdf: {e}")
 
+def extract_images(input_doc, output_dir) -> None:
+    try:
+        input_doc = fitz.open(input_doc)
+
+        for page in range(len(input_doc)):
+            cur_page = input_doc[page]
+            images = cur_page.get_images(full=True)
+            for img in images:
+                xref = image[0]
+                base_image = input_doc.extract_image(xref)
+                image_bytes = base_image["image"]
+                image = Image.open(image_bytes)
+                image_path = os.path.join(output_dir, f"page_{page+1}_image_{xref}.png")
+                image.save(image_path)
+                print(f"Extracted image from the pdf saved to: {image_path}")
+        input_doc.close()
+    
+    except Exception as e:
+        print(f"Error extracting images from the pdf: {e}")
+
+
