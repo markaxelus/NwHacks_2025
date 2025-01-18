@@ -24,13 +24,13 @@ const Home = () => {
 
       <button
         className="border-2 border-black px-14 py-2 rounded-lg text-white bg-primary"
-        onClick={() => navigate("")}
+        onClick={() => navigate("/upload")}
       >
         Generate a Diagram
       </button>
 
       <div className="pt-12">
-        <a href="#process">
+        <a href="#process"> 
           <button className="border-2 border-black p-3 rounded-full">
             <img
               src={ArrowDown}
