@@ -4,8 +4,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import  Navbar  from './components/Navbar'
 
-
 import Home from './pages/Home' 
+import KeyFeatures from './pages/KeyFeatures'
+import Info from './pages/Info'
 
 
 import './styles/global.css'
@@ -23,6 +24,8 @@ createRoot(document.getElementById('root')!).render(
           element= {
             <>
               <Home />
+              <KeyFeatures />
+              <Info />
             </>
           }
         />
