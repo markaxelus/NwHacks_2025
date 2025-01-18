@@ -10,6 +10,7 @@ dotenv.config();
 
 const client = new SSMClient({});
 
+// Interface for the input properties
 interface Props {
   inputText: string;
 }
@@ -65,9 +66,7 @@ export async function handler(event: any) {
       GENERATE_MERMAID_PROMPT.template
     );
 
-    // delete this line
-    console.log("First AI prompt:", diagramPrompt);
-
+    // First invocation to generate diagram
     const diagramResponse = await aiModel.invoke([
       { role: "system", content: diagramPrompt },
     ]);
@@ -77,9 +76,7 @@ export async function handler(event: any) {
         ? diagramResponse.content
         : JSON.stringify(diagramResponse.content);
 
-    // delete this line
-    console.log("First AI response:", diagramOutput);
-
+    // Second invocation to generate summary
     const summaryPrompt = getSystemPrompt(
       { extractedInfo: diagramOutput },
       GENERATE_SUMMARY_PROMPT.template
@@ -90,9 +87,6 @@ export async function handler(event: any) {
     ]);
 
     const summaryOutput = summaryResponse.content;
-
-    // delete this line
-    console.log("Third AI response:", summaryOutput);
 
     return {
       statusCode: 200,
