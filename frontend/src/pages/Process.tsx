@@ -4,7 +4,7 @@ import React from 'react'
 const Process = () => {
   return (
     <div id='process'
-        className='flex pt-16 flex-col space-y-6 text-center pt-44 h-[50vh]'>
+        className='flex flex-col space-y-6 text-center pt-44 h-[50vh]'>
       <h1 className='font-bold text-4xl'>
         How It Works
       </h1>

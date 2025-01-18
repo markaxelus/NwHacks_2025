@@ -25,7 +25,7 @@ const navLinks = [
 const Navbar = () => {
     
     return (
-        <nav className={`fixed top-0 w-full flex justify-between items-center py-4 pl-10 font-primary bg-white shadow-md`}>
+        <nav className={`fixed top-0 w-full flex justify-between items-center py-4 pl-10 font-primary bg-white `}>
             {/* Left : Logo */}
             <div className='flex space-x-4 font-bold text-3xl '>
                 <a href={navLinks[0].url}
