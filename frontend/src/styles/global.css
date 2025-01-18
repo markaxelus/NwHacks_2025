@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  color: inherit;
+  font-family: "ClashGrotesk", sans-serif;
+}
+@font-face {
+  font-family: "ClashGrotesk";
+  src: url("./fonts/ClashGrotesk-Regular.otf") format("otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.ide-background {
+  background-color: #f7f9fb;
+}

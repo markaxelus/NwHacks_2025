@@ -1,22 +1,22 @@
 import React from 'react'
-import Logo from '../assets/MindMap.png'
+
 import styles from '../styles/Navbar.module.css'
 
 const navLinks = [
     {
         name: 'Link',
         url: '/',
-        icon: Logo,
+        icon: '',
     },
     {
         name: 'Explore Product',
         url: '/generation',
-        className: "",
+        className: styles.exploreproducts,
     },
     {
         name: 'Login',
         url: '/login',
-        className: "",
+        className: styles.login,
     }
 ]
 
