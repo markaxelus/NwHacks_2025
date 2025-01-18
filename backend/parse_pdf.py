@@ -44,5 +44,3 @@ def extract_images(input_doc, output_dir) -> None:
     
     except Exception as e:
         print(f"Error extracting images from the pdf: {e}")
-
-
