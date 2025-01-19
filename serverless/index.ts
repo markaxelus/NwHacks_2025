@@ -8,6 +8,8 @@ import {
 import { pdfToText } from "pdf-ts";
 import fs from "fs/promises";
 
+import { useLocation } from "react-router-dom";
+
 dotenv.config();
 
 const client = new SSMClient({});
@@ -58,10 +60,14 @@ async function getAiModel() {
   });
 }
 
-const pdfPath = `../backend/sample.pdf`;
 
-async function extractTextFromPdf() {
+
+const BASE_PDF_PATH = `../backend/uploads/`;
+
+
+async function extractTextFromPdf(fileName: string) {
   try {
+    const pdfPath = `${BASE_PDF_PATH}${fileName}`; 
     const pdf = await fs.readFile(pdfPath);
     const text = await pdfToText(pdf);
     return text;
@@ -74,14 +80,22 @@ async function extractTextFromPdf() {
 export async function handler(event: any) {
   try {
     const aiModel = await getAiModel();
-    const text = await extractTextFromPdf();
+
+    // Extract file name from event
+    const { fileName } = JSON.parse(event.body);
+    if (!fileName) {
+      throw new Error("File name is required in the request.");
+    }
+
+    // Extract text from the specified PDF
+    const text = await extractTextFromPdf(fileName);
 
     const diagramPrompt = getSystemPrompt(
       { inputText: text },
       GENERATE_MERMAID_PROMPT.template
     );
 
-    // First invocation to generate diagram
+    // Generate diagram
     const diagramResponse = await aiModel.invoke([
       { role: "system", content: diagramPrompt },
     ]);
@@ -91,7 +105,7 @@ export async function handler(event: any) {
         ? diagramResponse.content
         : JSON.stringify(diagramResponse.content);
 
-    // Second invocation to generate summary
+    // Generate summary
     const summaryPrompt = getSystemPrompt(
       { extractedInfo: diagramOutput },
       GENERATE_SUMMARY_PROMPT.template

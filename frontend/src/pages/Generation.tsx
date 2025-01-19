@@ -81,12 +81,12 @@ const Generation = () => {
       */}
       <div className="flex h-screen">
         {/* Left Section: editor */}
-          <div className="w-1/2 h-screen ide-background">
+          <div className="w-1/2 ide-background">
             <div className="h-45%]">
               <Ide code={code} setCode={setCode} />
             </div>
 
-            <div className="h-[55%] ">
+            <div className=" ">
               
               <ChatBox />
             </div>
