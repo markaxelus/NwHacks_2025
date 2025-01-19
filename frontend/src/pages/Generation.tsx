@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Logo from "../assets/MindMap.png";
 import DLogo from "../assets/dark/D_Mind_Map.png";
 import styles from "../styles/Generation.module.css";
 
 import Ide from "../components/Ide";
-import Canvas from "../components/Canvas";
+import Canvas, { ExportFunctions } from "../components/Canvas";
 import ChatBox from "../components/ChatBox";
 
-import mermaid from "mermaid";
 import { useLocation } from "react-router-dom";
 import { useDarkMode } from "../components/DarkMode";
 
@@ -17,7 +16,7 @@ const navLinks = [
     url: "/",
   },
   {
-    name: "Save as...   ",
+    name: "Save as...",
     url: "",
     className: styles.saveImage,
   },
@@ -30,6 +29,9 @@ const Generation = () => {
 
   const [code, setCode] = useState<string>("");
   const [mermaidCode, setMermaidCode] = useState<string>("");
+
+  // Create a ref to access export functions in Canvas
+  const canvasRef = useRef<ExportFunctions>(null);
 
   const fetchDiagramOutput = async () => {
     try {
@@ -60,8 +62,26 @@ const Generation = () => {
     fetchDiagramOutput();
   }, []);
 
+  // Handle export based on type
+  const handleExport = (type: string) => {
+    if (canvasRef.current) {
+      switch (type) {
+        case "png":
+          canvasRef.current.exportAsPng();
+          break;
+        case "jpeg":
+          canvasRef.current.exportAsJpeg();
+          break;
+        case "pdf":
+          canvasRef.current.exportAsPdf();
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
   return (
-    
     <div className="">
       {/* Nav Component */}
       <nav
@@ -69,11 +89,14 @@ const Generation = () => {
       >
         {/* Left : Logo */}
         <div className="flex space-x-4 font-bold text-3xl ">
-          <a href={navLinks[0].url} className="flex items-center dark:bg-clip-text 
-        dark:bg-gradient-to-r 
-        dark:from-[#60DDD9] 
-        dark:to-[#347775]
-        dark:text-transparent">
+          <a
+            href={navLinks[0].url}
+            className="flex items-center dark:bg-clip-text 
+              dark:bg-gradient-to-r 
+              dark:from-[#60DDD9] 
+              dark:to-[#347775]
+              dark:text-transparent"
+          >
             {Logo && (
               <img src={darkMode ? DLogo : Logo} alt="logo" className="mr-2" />
             )}
@@ -84,23 +107,80 @@ const Generation = () => {
         <div></div>
 
         {/* Right : Navigation */}
-        <div className="space-x-8 mr-12 ">
-          {navLinks.slice(1).map((link, index) => (
-            <a
-              key={index}
-              href={link.url}
-              className={`text-md ${link.className || ""}`}
-            >
-              {link.name}
-            </a>
-          ))}
+        <div className="flex space-x-8 mr-12">
+          {navLinks.map((link, index) => {
+            if (link.name.trim() === "Save as...") {
+              return (
+                <div key={index} className="relative group">
+                  <button
+                    className={`text-md ${link.className || ""} focus:outline-none`}
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    {link.name}
+                  </button>
+                  {/* Dropdown Menu */}
+                  <div
+                    className="absolute right-0 top-full  w-32 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg hidden group-hover:block"
+                    role="menu"
+                    aria-label="Save as options"
+                  >
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleExport("png");
+                      }}
+                      className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      role="menuitem"
+                    >
+                      PNG
+                    </a>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleExport("jpeg");
+                      }}
+                      className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      role="menuitem"
+                    >
+                      JPG
+                    </a>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleExport("pdf");
+                      }}
+                      className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      role="menuitem"
+                    >
+                      PDF
+                    </a>
+                    {/* Add more options if needed */}
+                  </div>
+                </div>
+              );
+            } else {
+              return (
+                <a
+                  key={index}
+                  href={link.url}
+                  className={`text-md ${link.className || ""}`}
+                >
+                  {link.name}
+                </a>
+              );
+            }
+          })}
         </div>
       </nav>
 
       {/* Diagram Component 
-                    1. IDE for code
-                    2. Canvas for Diagram
-                    3. AI Chatbox
+                  1. IDE for code
+                  2. Canvas for Diagram
+                  3. AI Chatbox
       */}
       <div className="flex h-screen">
         {/* Left Section: editor */}
@@ -115,9 +195,9 @@ const Generation = () => {
 
         {/* Container where the Diagram and Chatbox for AI prompts will be placed */}
 
-        <div className="w-1/2  ">
-          <div className="w-full h-full flex justify-center items-center ">
-            <Canvas mermaidCode={mermaidCode} />
+        <div className="w-1/2">
+          <div className="w-full h-full flex justify-center items-center">
+            <Canvas ref={canvasRef} mermaidCode={mermaidCode} />
           </div>
         </div>
       </div>
