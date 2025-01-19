@@ -26,17 +26,20 @@ const navLinks = [
   },
 ];
 
-const Diagram = () => {
-  const [code, setCode] = useState<string>(`graph TD
-    A[Start]:::startStyle --> B[Is it working?]:::decisionStyle
-    B -->|Yes| C[Continue]:::actionStyle
-    B -->|No| D[Fix it]:::actionStyle
-
-    classDef startStyle fill:#f4f4f4,stroke:#ccc,stroke-width:1px,font-size:14px,font-family:Inter;
-    classDef decisionStyle fill:#ffffff,stroke:#333,stroke-width:1.5px,stroke-dasharray:5 5;
-    classDef actionStyle fill:#e6ffe6,stroke:#666,stroke-width:1.5px;
+const Generation = () => {
+  const [code, setCode] = useState<string>(`
+    connect lambda here
 
         `);
+
+    const [mermaidCode, setMermaidCode] = useState<string>(`
+      graph TD;
+        A[Start] --> B{Decision};
+        B -->|Yes| C[Do Something];
+        B -->|No| D[Do Nothing];
+        C --> D;
+    `);
+
 
 
   return (
@@ -78,18 +81,22 @@ const Diagram = () => {
       */}
       <div className="flex h-screen">
         {/* Left Section: editor */}
-        <div className="w-1/2 ide-background">
-          <Ide code={code} setCode={setCode} />
-        </div>
+          <div className="w-1/2 h-screen ide-background">
+            <div className="h-45%]">
+              <Ide code={code} setCode={setCode} />
+            </div>
+
+            <div className="h-[55%] ">
+              
+              <ChatBox />
+            </div>
+          </div>
 
         {/* Container where the Diagram and Chatbox for AI prompts will be placed */}
 
         <div className="w-1/2 mx-8 mt-28 mb-8 bg-gray-900/[0.1] rounded-3xl">
           <div className="h-[85%]">
-            <Canvas />
-          </div>
-          <div className="h-[15%] ">
-            <ChatBox />
+            <Canvas mermaidCode={mermaidCode}/>
           </div>
         </div>  
 
@@ -98,4 +105,4 @@ const Diagram = () => {
   );
 };
 
-export default Diagram;
+export default Generation;
