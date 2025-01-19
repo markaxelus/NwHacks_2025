@@ -1,6 +1,7 @@
 import os
 import fitz
 from PIL import Image
+from pdfminer.high_level import extract_text
 
 
 '''
@@ -10,18 +11,18 @@ from PIL import Image
         3. Implement solutions for scanned pdfs with tessaract
 
 ''' 
-def extract_text(input_doc, output_dir) -> None:
-    with open(input_doc, "rb") as pdf_file:
-        pdf = fitz.open(input_doc)
-        for page_number in range(len(pdf)):
-            page = pdf[page_number]
-            text = page.get_text("text")
-            text_file_path = os.path.join(output_dir, f"page_{page_number+1}_text.txt")
-            with open(text_file_path, "w", encoding='utf-8') as text_file:
-                text_file.write(text)
-            print(f"PyMuPDF extracted text from the pdf saved to: {text_file_path}")
-        pdf.close()
-
+def extract_text_from_pdf(input_file:str , output_dir_text:str) -> None:
+    try: 
+        # Open the input file with pdfminer
+        text_doc = extract_text(input_file)
+        text_file_path = os.path.join(output_dir_text, "extracted_text.txt")
+        with open(text_file_path, "w", encoding='utf-8') as text_file:
+            text_file.write(text_doc)
+        print(f"PDFMiner extracted text from the pdf saved to: {text_file_path}")
+        
+    
+    except Exception as e:
+        print(f"PDFMiner failed in extracting text from the pdf: {e}")
 def extract_images(input_file:str , output_image:str) -> None:      
 
     try:
@@ -67,7 +68,7 @@ def main():
     os.makedirs("output_txt", exist_ok=True)
     os.makedirs("output_img", exist_ok=True)
 
-    extract_text("sample.pdf", "output_txt")
+    extract_text_from_pdf("sample.pdf", "output_txt")
     extract_images("sample.pdf", "output_img")
 
 if __name__ == "__main__":
