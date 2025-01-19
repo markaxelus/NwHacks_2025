@@ -17,7 +17,7 @@ functions:
     events:
       - http:
           path: test
-          method: post
+          method: get
 
 plugins:
   - serverless-offline

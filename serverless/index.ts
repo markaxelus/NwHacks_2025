@@ -5,6 +5,8 @@ import {
   GENERATE_MERMAID_PROMPT,
   GENERATE_SUMMARY_PROMPT,
 } from "./systemPrompts.ts";
+import { pdfToText } from "pdf-ts";
+import fs from "fs/promises";
 
 dotenv.config();
 
@@ -56,13 +58,26 @@ async function getAiModel() {
   });
 }
 
+const pdfPath = `../backend/sample.pdf`;
+
+async function extractTextFromPdf() {
+  try {
+    const pdf = await fs.readFile(pdfPath);
+    const text = await pdfToText(pdf);
+    return text;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+}
+
 export async function handler(event: any) {
   try {
-    const props: Props = JSON.parse(event.body);
     const aiModel = await getAiModel();
+    const text = await extractTextFromPdf();
 
     const diagramPrompt = getSystemPrompt(
-      { inputText: props.inputText },
+      { inputText: text },
       GENERATE_MERMAID_PROMPT.template
     );
 

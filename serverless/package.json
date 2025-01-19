@@ -2,7 +2,8 @@
   "dependencies": {
     "@aws-sdk/client-ssm": "^3.731.1",
     "dotenv": "^16.4.7",
-    "langchain": "^0.3.11"
+    "langchain": "^0.3.11",
+    "pdf-ts": "^0.0.2"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
