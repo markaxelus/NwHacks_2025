@@ -29,7 +29,7 @@ const Upload = () => {
         >
             <div className="w-full h-full justify-center items-center flex flex-col space-y-3">
                 <h1 className='font-bold text-4xl '>
-                    Welcome to Link
+                    Welcome to Synapse
                 </h1>
                 
                 {/* Upload PDF Box 

@@ -12,7 +12,7 @@ const Home = () => {
       id="home"
       className="flex justify-center items-center pb-[2rem] h-[110vh] flex-col space-y-12 text-center"
     >
-      <h1 className="font-bold text-4xl">Welcome to Link</h1>
+      <h1 className="font-bold text-4xl">Welcome to Synapse</h1>
       <img src={Logo} alt="logo" className="w-[100px] h-[100px]" />
 
       <div className="font-bold">

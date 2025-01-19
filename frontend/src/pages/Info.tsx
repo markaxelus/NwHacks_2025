@@ -14,14 +14,14 @@ const Info = () => {
             {/* Why Choose */}
             <div className='flex flex-col items-center space-y-8'>
                 <h1 className='text-4xl'>
-                    Why Choose Link?
+                    Why Choose Synapse?
                 </h1>
                 <img src={Learning} 
                     alt='thinking'
                     className=''
                 />
                 <p>
-                Designed with neurodivergent users in mind, Link simplifies learning by 
+                Designed with neurodivergent users in mind, Synapse simplifies learning by 
                 <br></br>presenting information visually, making complex ideas easier to absorb
                 </p>
                     
@@ -52,7 +52,7 @@ const Info = () => {
                 />
                 <p>
                 Be part of our growing community. Share feedback, request features, and 
-                <br></br>help shape the future of Link
+                <br></br>help shape the future of Synapse
                 </p>
             </div>
 

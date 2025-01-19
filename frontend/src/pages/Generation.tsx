@@ -10,7 +10,7 @@ import mermaid from "mermaid";
 
 const navLinks = [
   {
-    name: "Link",
+    name: "Synapse",
     url: "/",
     icon: Logo,
   },
