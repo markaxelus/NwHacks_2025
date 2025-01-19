@@ -1,0 +1,4 @@
+.uploadPageContainer {
+    background-color: rgba(0, 0, 0, 0.10); /* Black background with 10% opacity */
+    box-sizing: border-box;
+}
