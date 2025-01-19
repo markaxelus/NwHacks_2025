@@ -1,26 +1,17 @@
 .exploreproduct {
-    background-color: black; 
+    /* Light mode defaults */
+    background-color: black;
     color: white;
-    padding: 12px 50px; 
+    padding: 12px 50px;
     border-radius: 10px;
-    
-}
-
-.mode {
+  }
+  
+  .mode {
+    /* Light mode defaults */
     border: 1px solid black;
+    color: black;
+
     border-radius: 10px;
     padding: 12px 30px;
     font-weight: bold;
-
-}
-
-@media (prefers-color-scheme: dark) {
-    .exploreproduct {
-        background: linear-gradient(to right, #60DDD9, #347775);
-    }
-
-    .mode {
-        border: 1px solid white;
-        color: white;
-    }
-}
+  }

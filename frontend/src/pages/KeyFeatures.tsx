@@ -10,7 +10,7 @@ import DExport from '../assets/dark/D_Chart.png'
 import { useDarkMode } from '../components/DarkMode'
 
 const KeyFeatures = () => {
-    const darkMode = useDarkMode()
+    const { darkMode } = useDarkMode()
     return (
     <div className='flex flex-col justify-center items-center font-bold space-y-16 h-[60vh] '>
         <h1 className='text-4xl dark:bg-clip-text 

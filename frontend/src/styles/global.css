@@ -1,7 +1,10 @@
+/* global.css or index.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Reset / Shared styles */
 * {
   margin: 0;
   padding: 0;
@@ -18,27 +21,17 @@
   font-style: normal;
 }
 
-@media (prefers-color-scheme: light) {
-  html {
-    color-scheme: light;
-  }
-  body {
-    background-color: white; /* Light background for light mode */
-    color: black; /* Dark text for light mode */
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    background-color: black;
-    color: white;
-  
-  }
-}
-
+/* Let Tailwind handle the theming via .dark */
 html {
   scroll-behavior: smooth;
+}
+
+/* Example: by default, use light background/text */
+body {
+  @apply bg-white text-black transition-colors duration-200;
+}
+
+/* When .dark is present on <html>, switch to dark theme */
+.dark body {
+  @apply bg-black text-white;
 }
