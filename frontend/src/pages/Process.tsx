@@ -5,7 +5,11 @@ const Process = () => {
   return (
     <div id='process'
         className='flex flex-col space-y-6 text-center pt-44 h-[50vh]'>
-      <h1 className='font-bold text-4xl'>
+      <h1 className='font-bold text-4xl dark:bg-clip-text 
+        dark:bg-gradient-to-r 
+        dark:from-[#60DDD9] 
+        dark:to-[#347775]
+        dark:text-transparent'>
         How It Works
       </h1>
       

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  
   content: ['./index.html', 
             './src/**/*.{js,jsx,ts,tsx}'
            ],
@@ -16,21 +17,26 @@ export default {
       primary: ["ClashGrotesk", "sans-serif"], 
     },
 	  extend: {
-      backgroundImage: {
-        'gradient-overlay': 'linear-gradient(10% #60DDD9, 84% #347775)',
-      },
+  
       colors:
       {
+      
         'primary': '#000000',
         'secondary': '#FFFFFF',
         'accent_blue': '#2B59A4',
         'accent_red': '#FE5A4E',
-        'pdfbg': '#EDF0F9',
+        'grad': '#60DDD9',
+        
     
       },
       
 	  },
 	},
+  variants: {
+    extend: {
+      backgroundImage: ['dark'], 
+    },
+  },
   plugins: [],
 };
 

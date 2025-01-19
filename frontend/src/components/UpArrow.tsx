@@ -19,8 +19,8 @@ const UpArrow = () => {
   return (
     <div>
       
-        <div className="relative">
-          <div className="group fixed bottom-5 right-5 z-50 cursor-pointer">
+        <div className="relative ">
+          <div className="group fixed bottom-5 right-5 z-50 cursor-pointer filter dark:invert">
             {/* Arrow Icon */}
             <img
               src={ArrowUp}
