@@ -18,6 +18,7 @@ functions:
       - http:
           path: test
           method: get
+          cors: true
 
 plugins:
   - serverless-offline

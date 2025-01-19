@@ -8,8 +8,6 @@ import {
 import { pdfToText } from "pdf-ts";
 import fs from "fs/promises";
 
-import { useLocation } from "react-router-dom";
-
 dotenv.config();
 
 const client = new SSMClient({});
@@ -60,14 +58,11 @@ async function getAiModel() {
   });
 }
 
-
-
 const BASE_PDF_PATH = `../backend/uploads/`;
-
 
 async function extractTextFromPdf(fileName: string) {
   try {
-    const pdfPath = `${BASE_PDF_PATH}${fileName}`; 
+    const pdfPath = `${BASE_PDF_PATH}${fileName}`;
     const pdf = await fs.readFile(pdfPath);
     const text = await pdfToText(pdf);
     return text;
