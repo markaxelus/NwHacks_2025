@@ -20,16 +20,33 @@ const navLinks = [
 
 const Generation = () => {
   const location = useLocation();
-  const fileName = location.state?.fileName || "";
   const darkMode = useDarkMode();
 
+  // Initialize fileName from location state or fallback to an empty string
+  const [fileName, setFileName] = useState<string>(
+    location.state?.fileName || ""
+  );
   const [code, setCode] = useState<string>("");
   const [mermaidCode, setMermaidCode] = useState<string>("");
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
   // Create a ref to access export functions in Canvas
   const canvasRef = useRef<ExportFunctions>(null);
 
+  // Handle file upload and store fileName
+  const handleFileUpload = (file: File) => {
+    setUploadedFile(file);
+    setFileName(file.name); // Save fileName for later use
+  };
+
+  // Fetch diagram output using fileName
   const fetchDiagramOutput = async () => {
+    if (!fileName) {
+      console.error("File name is required for regeneration");
+      alert("Please upload a file to regenerate the diagram.");
+      return;
+    }
+
     try {
       const lamdaUrl = "http://localhost:3000/dev/test";
 
@@ -54,9 +71,12 @@ const Generation = () => {
     }
   };
 
+  // Fetch diagram output when the component loads if fileName is available
   useEffect(() => {
-    fetchDiagramOutput();
-  }, []);
+    if (fileName) {
+      fetchDiagramOutput();
+    }
+  }, [fileName]);
 
   // Handle export based on type
   const handleExport = (type: string) => {
@@ -109,7 +129,9 @@ const Generation = () => {
               return (
                 <div key={index} className="relative group">
                   <button
-                    className={`text-md ${link.className || ""} focus:outline-none`}
+                    className={`text-md ${
+                      link.className || ""
+                    } focus:outline-none`}
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
@@ -154,7 +176,6 @@ const Generation = () => {
                     >
                       PDF
                     </a>
-                    {/* Add more options if needed */}
                   </div>
                 </div>
               );
@@ -185,7 +206,7 @@ const Generation = () => {
             <Ide code={mermaidCode} setCode={setMermaidCode} />
           </div>
           <div className="h-[30%] m-4 pb-8 ">
-            <ChatBox />
+            <ChatBox regenerate={fetchDiagramOutput} fileName={fileName} />
           </div>
         </div>
 
