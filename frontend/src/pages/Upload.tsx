@@ -35,11 +35,14 @@ const Upload = () => {
     }
     const apiUrl = "http://localhost:3000/dev/test";
 
+    // 1) Upload the file to your FastAPI endpoint
     const formData = new FormData();
     formData.append("file", uploadedFile);
 
     try {
       setUploading(true);
+
+      // Upload to FastAPI
       const response = await axios.post(
         "http://127.0.0.1:8000/upload",
         formData,
@@ -50,6 +53,20 @@ const Upload = () => {
         }
       );
       console.log(response.data);
+
+      // 2) Now call the Lambda via POST with fileName in the body
+      const lambdaResponse = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fileName: uploadedFile.name, // <-- PASS THE FILE NAME
+        }),
+      });
+      const result = await lambdaResponse.json();
+      console.log("Lambda Response:", result);
+
       setUploading(false);
       // Navigate to the generation page or show success message
       navigate("/generation");
@@ -59,16 +76,6 @@ const Upload = () => {
         err.response?.data?.detail || "An error occurred during upload."
       );
       setUploading(false);
-    }
-    // Trigger Lambda
-    try {
-      const lambdaResponse = await fetch(apiUrl, {
-        method: "GET",
-      });
-      const result = await lambdaResponse.json();
-      console.log("Lambda Response:", result);
-    } catch (err) {
-      console.error("Error invoking Lambda", err);
     }
   };
 
@@ -135,7 +142,7 @@ const Upload = () => {
                 className="flex w-full h-24 items-center justify-center text-center bg-gray-900/[.10] px-8 py-2 text-left cursor-pointer"
               >
                 Drop file or Browse <br />
-                Format: pdf & Max file size: 5MB
+                Format: pdf &amp; Max file size: 5MB
               </label>
               <input
                 type="file"

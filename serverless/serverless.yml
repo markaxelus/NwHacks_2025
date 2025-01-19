@@ -1,4 +1,4 @@
-org: oliviachoi
+org: markaxelus
 app: revision
 service: my-lambda-service
 
@@ -17,7 +17,7 @@ functions:
     events:
       - http:
           path: test
-          method: get
+          method: post
           cors: true
 
 plugins:

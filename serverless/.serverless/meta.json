@@ -1,0 +1,86 @@
+{
+  "/Users/markaxelus/Documents/NwHacks_2025/serverless": {
+    "versionSfCore": null,
+    "versionFramework": "4.4.19",
+    "isWithinCompose": false,
+    "isCompose": false,
+    "composeOrgName": null,
+    "composeServiceName": null,
+    "servicePath": "/Users/markaxelus/Documents/NwHacks_2025/serverless",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "org": "markaxelus",
+      "app": "revision",
+      "service": "my-lambda-service",
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs18.x",
+        "region": "us-west-2"
+      },
+      "functions": {
+        "chainedLambda": {
+          "timeout": 60,
+          "handler": "index.handler",
+          "environment": {
+            "OPENAI_API_KEY": "<REDACTED>"
+          },
+          "events": [
+            {
+              "http": {
+                "path": "test",
+                "method": "get",
+                "cors": true
+              }
+            }
+          ]
+        }
+      },
+      "plugins": [
+        "serverless-offline"
+      ]
+    },
+    "serviceRawFile": "org: markaxelus\napp: revision\nservice: my-lambda-service\n\nprovider:\n  name: aws\n  runtime: nodejs18.x\n  region: us-west-2\n\nfunctions:\n  chainedLambda:\n    timeout: 60\n\n    handler: index.handler\n    environment:\n      OPENAI_API_KEY: ${env:OPENAI_API_KEY}\n    events:\n      - http:\n          path: test\n          method: get\n          cors: true\n\nplugins:\n  - serverless-offline\n",
+    "command": [
+      "offline"
+    ],
+    "options": {},
+    "error": {
+      "message": "Cannot resolve '${env:OPENAI_API_KEY}' variable at 'functions.chainedLambda.environment.OPENAI_API_KEY'. No value is available for this variable, and no default value was provided. Please check your variable definitions or provide a default value.",
+      "stack": "Error: Cannot resolve '${env:OPENAI_API_KEY}' variable at 'functions.chainedLambda.environment.OPENAI_API_KEY'. No value is available for this variable, and no default value was provided. Please check your variable definitions or provide a default value.\n    at _ResolverManager.resolve (file:///Users/markaxelus/.serverless/releases/4.4.19/package/dist/sf-core.js:693:57587)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async #handlePlaceholderNode (file:///Users/markaxelus/.serverless/releases/4.4.19/package/dist/sf-core.js:693:55959)\n    at async file:///Users/markaxelus/.serverless/releases/4.4.19/package/dist/sf-core.js:693:53887\n    at async processNodeAndHandleCompletion (file:///Users/markaxelus/.serverless/releases/4.4.19/package/dist/sf-core.js:693:44836)",
+      "code": "MISSING_VARIABLE_RESULT"
+    },
+    "machineId": "3419c487139c59376714972de965997c",
+    "stage": "dev",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "71e91181-809c-432f-ab7c-947c9d330c13",
+    "orgName": "markaxelus",
+    "userId": "7TktRgxckBlYxjLpsR",
+    "dashboard": {
+      "isEnabledForService": true,
+      "requiredAuthentication": true,
+      "orgFeaturesInUse": {
+        "providers": false,
+        "monitoring": true
+      },
+      "orgObservabilityIntegrations": [
+        {
+          "integrationId": "dTTUwra5WNEnAXqvj8xE52",
+          "awsAccountId": "194722428960",
+          "status": "alive"
+        }
+      ],
+      "serviceAppId": "FRSsxxqLL7F5pwxHL6",
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "userName": "markaxelus",
+    "subscription": null,
+    "userEmail": "mrkaxelus@gmail.com",
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  }
+}
