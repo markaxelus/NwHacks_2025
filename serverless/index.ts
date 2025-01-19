@@ -11,11 +11,7 @@ import fs from "fs/promises";
 dotenv.config();
 
 const client = new SSMClient({});
-
-// Interface for the input properties
-interface Props {
-  inputText: string;
-}
+const BASE_PDF_PATH = `../backend/uploads/`;
 
 function getSystemPrompt(
   inputVariables: Record<string, string>,
@@ -48,7 +44,7 @@ async function getAiModel() {
       );
       openAiApiKey = response.Parameter?.Value;
     } catch (error) {
-      console.error("Error fetching OpenAI API key from SSM", error);
+      console.error("Error fetching OpenAI API key from SSM:", error);
       throw error;
     }
   }
@@ -58,58 +54,52 @@ async function getAiModel() {
   });
 }
 
-const BASE_PDF_PATH = `../backend/uploads/`;
-
 async function extractTextFromPdf(fileName: string) {
   try {
     const pdfPath = `${BASE_PDF_PATH}${fileName}`;
+    console.log("Reading PDF from path:", pdfPath);
+
     const pdf = await fs.readFile(pdfPath);
     const text = await pdfToText(pdf);
     return text;
   } catch (err) {
-    console.error(err);
+    console.error("Error reading PDF:", err);
     throw err;
   }
 }
 
 export async function handler(event: any) {
   try {
-    const aiModel = await getAiModel();
-
-    // Extract file name from event
-    const { fileName } = JSON.parse(event.body);
-    if (!fileName) {
-      throw new Error("File name is required in the request.");
+    // Safely parse event.body whether it's a string or an object
+    let body: any;
+    if (typeof event.body === "string") {
+      body = JSON.parse(event.body);
+    } else {
+      body = event.body || {};
     }
 
-    // Extract text from the specified PDF
+    const { fileName } = body;
+    if (!fileName) {
+      throw new Error("File name is required in the request body under 'fileName'.");
+    }
+
+    const aiModel = await getAiModel();
     const text = await extractTextFromPdf(fileName);
 
-    const diagramPrompt = getSystemPrompt(
-      { inputText: text },
-      GENERATE_MERMAID_PROMPT.template
-    );
-
-    // Generate diagram
-    const diagramResponse = await aiModel.invoke([
-      { role: "system", content: diagramPrompt },
-    ]);
-
+    // Generate the Mermaid diagram
+    const diagramPrompt = getSystemPrompt({ inputText: text }, GENERATE_MERMAID_PROMPT.template);
+    const diagramResponse = await aiModel.invoke([{ role: "system", content: diagramPrompt }]);
     const diagramOutput =
       typeof diagramResponse.content === "string"
         ? diagramResponse.content
         : JSON.stringify(diagramResponse.content);
 
-    // Generate summary
+    // Generate the summary
     const summaryPrompt = getSystemPrompt(
       { extractedInfo: diagramOutput },
       GENERATE_SUMMARY_PROMPT.template
     );
-
-    const summaryResponse = await aiModel.invoke([
-      { role: "system", content: summaryPrompt },
-    ]);
-
+    const summaryResponse = await aiModel.invoke([{ role: "system", content: summaryPrompt }]);
     const summaryOutput = summaryResponse.content;
 
     return {
@@ -119,13 +109,11 @@ export async function handler(event: any) {
         secondOutput: summaryOutput,
       }),
     };
-  } catch (error) {
-    console.error("Error in Lambda execution", error);
+  } catch (error: any) {
+    console.error("Error in Lambda execution:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({
-        error: error.message,
-      }),
+      body: JSON.stringify({ error: error.message }),
     };
   }
 }
