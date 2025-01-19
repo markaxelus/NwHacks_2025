@@ -15,15 +15,11 @@ const navLinks = [
     icon: Logo,
   },
   {
-    name: "Save as Image",
+    name: "Save as...   ",
     url: "",
     className: styles.saveImage,
   },
-  {
-    name: "Finish Editing",
-    url: "",
-    className: styles.finish,
-  },
+  
 ];
 
 const Generation = () => {
@@ -58,7 +54,7 @@ const Generation = () => {
           </a>
         </div>
 
-        <div>Instructions if needed</div>
+        <div></div>
 
         {/* Right : Navigation */}
         <div className="space-x-8 mr-12 ">
@@ -81,18 +77,18 @@ const Generation = () => {
       */}
       <div className="flex h-screen">
         {/* Left Section: editor */}
-          <div className="w-[1/2] z-10">
+          <div className="w-1/2 z-10 ">
             <div className="h-[70%] ">
               <Ide code={code} setCode={setCode} />
             </div>
-            <div className="h-[30%] ">
+            <div className="h-[30%] m-4 pb-8 "> 
               <ChatBox />
             </div>
           </div>
 
         {/* Container where the Diagram and Chatbox for AI prompts will be placed */}
 
-        <div className="w-1/2 bg-gray-900/[0.1] ">
+        <div className="w-1/2  ">
           <div className="w-full h-full flex justify-center items-center ">
             <Canvas mermaidCode={mermaidCode}/>
           </div>

@@ -17,6 +17,17 @@
   font-style: normal;
 }
 
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    background-color: black;
+    color: white;
+  }
+}
+
+
 html {
   scroll-behavior: smooth;
 }
