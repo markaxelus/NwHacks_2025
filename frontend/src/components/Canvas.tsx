@@ -72,7 +72,7 @@ const Canvas: React.FC<CanvasProps> = ({ mermaidCode }) => {
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full ">
       <div
         ref={containerRef}
         className="flex justify-center items-center w-full h-full"

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../assets/MindMap.png";
+import DLogo from "../assets/dark/D_Mind_Map.png";
 import styles from "../styles/Generation.module.css";
 
 import Ide from "../components/Ide";
@@ -8,12 +9,12 @@ import ChatBox from "../components/ChatBox";
 
 import mermaid from "mermaid";
 import { useLocation } from "react-router-dom";
+import { useDarkMode } from "../components/DarkMode";
 
 const navLinks = [
   {
     name: "Synapse",
     url: "/",
-    icon: Logo,
   },
   {
     name: "Save as...   ",
@@ -25,6 +26,7 @@ const navLinks = [
 const Generation = () => {
   const location = useLocation();
   const fileName = location.state?.fileName || "";
+  const darkMode = useDarkMode();
 
   const [code, setCode] = useState<string>("");
   const [mermaidCode, setMermaidCode] = useState<string>("");
@@ -59,16 +61,21 @@ const Generation = () => {
   }, []);
 
   return (
+    
     <div className="">
       {/* Nav Component */}
       <nav
-        className={`fixed top-0 w-full flex justify-between items-center py-4 pl-10 font-primary bg-white shadow-md z-50`}
+        className={`fixed top-0 w-full flex justify-between items-center py-4 pl-10 font-primary bg-white shadow-md z-50 dark:bg-black`}
       >
         {/* Left : Logo */}
         <div className="flex space-x-4 font-bold text-3xl ">
-          <a href={navLinks[0].url} className="flex items-center ">
-            {navLinks[0].icon && (
-              <img src={navLinks[0].icon} alt="logo" className="mr-2" />
+          <a href={navLinks[0].url} className="flex items-center dark:bg-clip-text 
+        dark:bg-gradient-to-r 
+        dark:from-[#60DDD9] 
+        dark:to-[#347775]
+        dark:text-transparent">
+            {Logo && (
+              <img src={darkMode ? DLogo : Logo} alt="logo" className="mr-2" />
             )}
             {navLinks[0].name}
           </a>
