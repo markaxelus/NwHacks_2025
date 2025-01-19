@@ -3,7 +3,7 @@ import Editor, { useMonaco } from "@monaco-editor/react";
 
 interface IdeProps {
   code: string;
-  setCode: (newCode: string) => void;
+  setCode: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Ide: React.FC<IdeProps> = ({ code, setCode }) => {

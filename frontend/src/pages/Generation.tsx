@@ -27,7 +27,7 @@ const Generation = () => {
   const fileName = location.state?.fileName || "";
 
   const [code, setCode] = useState<string>("");
-  const [mermaidCode, setMermaidCode] = useState<string>(``);
+  const [mermaidCode, setMermaidCode] = useState<string>("");
 
   const fetchDiagramOutput = async () => {
     try {
@@ -99,7 +99,7 @@ const Generation = () => {
         {/* Left Section: editor */}
         <div className="w-1/2 z-10 ">
           <div className="h-[70%] ">
-            <Ide code={code} setCode={setCode} />
+            <Ide code={mermaidCode} setCode={setMermaidCode} />
           </div>
           <div className="h-[30%] m-4 pb-8 ">
             <ChatBox />
