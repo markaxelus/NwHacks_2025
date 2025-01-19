@@ -82,5 +82,62 @@
     "serviceProviderAwsCfStackUpdated": null,
     "serviceProviderAwsCfStackStatus": null,
     "serviceProviderAwsCfStackOutputs": null
+  },
+  "/Users/oliviachoi/Desktop/Career/NwHacks_2025/serverless": {
+    "versionSfCore": null,
+    "versionFramework": "4.4.19",
+    "isWithinCompose": false,
+    "isCompose": false,
+    "composeOrgName": null,
+    "composeServiceName": null,
+    "servicePath": "/Users/oliviachoi/Desktop/Career/NwHacks_2025/serverless",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "org": "markaxelus",
+      "app": "revision",
+      "service": "my-lambda-service",
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs18.x",
+        "region": "us-west-2"
+      },
+      "functions": {
+        "chainedLambda": {
+          "timeout": 60,
+          "handler": "index.handler",
+          "environment": {
+            "OPENAI_API_KEY": "<REDACTED>"
+          },
+          "events": [
+            {
+              "http": {
+                "path": "test",
+                "method": "post",
+                "cors": true
+              }
+            }
+          ]
+        }
+      },
+      "plugins": [
+        "serverless-offline"
+      ]
+    },
+    "serviceRawFile": "org: markaxelus\napp: revision\nservice: my-lambda-service\n\nprovider:\n  name: aws\n  runtime: nodejs18.x\n  region: us-west-2\n\nfunctions:\n  chainedLambda:\n    timeout: 60\n\n    handler: index.handler\n    environment:\n      OPENAI_API_KEY: ${env:OPENAI_API_KEY}\n    events:\n      - http:\n          path: test\n          method: post\n          cors: true\n\nplugins:\n  - serverless-offline\n",
+    "command": [
+      "offline"
+    ],
+    "options": {},
+    "error": {
+      "message": "You are not a member of the Org \"markaxelus\". Verify the \"org\" in your Service configuration (e.g. serverless.yml) or that you're providing manually is one your User Account or License Key has access to. Lastly, check the .serverlessrc file in the home directory of your machine to better understand what user account or License Key you are currently using. You can run \"serverless login\" to change the user account or License Key you are using.",
+      "stack": "Error: You are not a member of the Org \"markaxelus\". Verify the \"org\" in your Service configuration (e.g. serverless.yml) or that you're providing manually is one your User Account or License Key has access to. Lastly, check the .serverlessrc file in the home directory of your machine to better understand what user account or License Key you are currently using. You can run \"serverless login\" to change the user account or License Key you are using.\n    at Authentication.getAuthenticatedData (file:///Users/oliviachoi/.serverless/releases/4.4.19/package/dist/sf-core.js:688:3154)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Authentication.resolverAuthenticate (file:///Users/oliviachoi/.serverless/releases/4.4.19/package/dist/sf-core.js:688:20566)\n    at async _Meta.authenticate (file:///Users/oliviachoi/.serverless/releases/4.4.19/package/dist/sf-core.js:696:12154)\n    at async _Meta.authenticateAndResolve (file:///Users/oliviachoi/.serverless/releases/4.4.19/package/dist/sf-core.js:696:11738)\n    at async route (file:///Users/oliviachoi/.serverless/releases/4.4.19/package/dist/sf-core.js:1010:14685)\n    at async Object.run2 [as run] (file:///Users/oliviachoi/.serverless/releases/4.4.19/package/dist/sf-core.js:1010:15173)\n    at async run3 (file:///Users/oliviachoi/.serverless/releases/4.4.19/package/dist/sf-core.js:1010:16435)"
+    },
+    "machineId": "b378bfa4bf489cdacee331a732794000",
+    "stage": "dev",
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
   }
 }

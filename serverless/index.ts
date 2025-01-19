@@ -75,8 +75,8 @@ async function extractTextFromPdf(fileName: string) {
 
 export async function handler(event: any) {
   try {
-/*     console.log("Lambda received event:", JSON.stringify(event, null, 2));
- */
+    /*     console.log("Lambda received event:", JSON.stringify(event, null, 2));
+     */
     // Safely parse event.body if it's a string
     let body: any;
     if (typeof event.body === "string") {
@@ -90,8 +90,8 @@ export async function handler(event: any) {
     if (!fileName) {
       throw new Error("File name is required in the request body (fileName).");
     }
-/*     console.log("Requested file name:", fileName);
- */
+    /*     console.log("Requested file name:", fileName);
+     */
     // Get AI model
     const aiModel = await getAiModel();
 
@@ -110,6 +110,8 @@ export async function handler(event: any) {
       typeof diagramResponse.content === "string"
         ? diagramResponse.content
         : JSON.stringify(diagramResponse.content);
+
+    console.log("Diagram output:", diagramOutput);
 
     // 2) Generate summary
     const summaryPrompt = getSystemPrompt(

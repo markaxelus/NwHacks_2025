@@ -7,6 +7,7 @@ import Canvas from "../components/Canvas";
 import ChatBox from "../components/ChatBox";
 
 import mermaid from "mermaid";
+import { useLocation } from "react-router-dom";
 
 const navLinks = [
   {
@@ -19,27 +20,43 @@ const navLinks = [
     url: "",
     className: styles.saveImage,
   },
-  
 ];
 
 const Generation = () => {
-  const [code, setCode] = useState<string>(`
-    connect lambda here
+  const location = useLocation();
+  const fileName = location.state?.fileName || "";
 
-        `);
+  const [code, setCode] = useState<string>("");
+  const [mermaidCode, setMermaidCode] = useState<string>(``);
 
-    const [mermaidCode, setMermaidCode] = useState<string>(`
-      graph TD;
-    IT_Kit -->|consists of| Laptop;
-    IT_Kit -->|consists of| Monitor;
-    IT_Kit -->|consists of| Headphones;
-    IT_Kit -->|consists of| Keyboard;
-    IT_Kit -->|consists of| Mouse;
-    Monitor -->|is a| Dell_Monitor;
-    Dell_Monitor -->|with| Docking_Station;
-    `);
+  const fetchDiagramOutput = async () => {
+    try {
+      const lamdaUrl = "http://localhost:3000/dev/test";
 
+      const response = await fetch(lamdaUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ fileName }),
+      });
 
+      if (!response.ok) {
+        throw new Error("Failed to fetch diagram output");
+      }
+
+      const data = await response.json();
+
+      setCode(data.firstOutput || "No diagram output received");
+      setMermaidCode(data.firstOutput || "No diagram output received");
+    } catch (error) {
+      console.error("Error fetching diagram output:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDiagramOutput();
+  }, []);
 
   return (
     <div className="">
@@ -80,23 +97,22 @@ const Generation = () => {
       */}
       <div className="flex h-screen">
         {/* Left Section: editor */}
-          <div className="w-1/2 z-10 ">
-            <div className="h-[70%] ">
-              <Ide code={code} setCode={setCode} />
-            </div>
-            <div className="h-[30%] m-4 pb-8 "> 
-              <ChatBox />
-            </div>
+        <div className="w-1/2 z-10 ">
+          <div className="h-[70%] ">
+            <Ide code={code} setCode={setCode} />
           </div>
+          <div className="h-[30%] m-4 pb-8 ">
+            <ChatBox />
+          </div>
+        </div>
 
         {/* Container where the Diagram and Chatbox for AI prompts will be placed */}
 
         <div className="w-1/2  ">
           <div className="w-full h-full flex justify-center items-center ">
-            <Canvas mermaidCode={mermaidCode}/>
+            <Canvas mermaidCode={mermaidCode} />
           </div>
-        </div>  
-
+        </div>
       </div>
     </div>
   );

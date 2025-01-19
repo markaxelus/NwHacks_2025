@@ -54,6 +54,8 @@ const Upload = () => {
       );
       console.log(response.data);
 
+      navigate("/generation", { state: { fileName: uploadedFile.name } });
+
       // 2) Now call the Lambda via POST with fileName in the body
       const lambdaResponse = await fetch(apiUrl, {
         method: "POST",
