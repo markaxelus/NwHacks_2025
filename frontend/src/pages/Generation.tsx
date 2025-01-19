@@ -12,10 +12,6 @@ import { useDarkMode } from "../components/DarkMode";
 
 const navLinks = [
   {
-    name: "Synapse",
-    url: "/",
-  },
-  {
     name: "Save as...",
     url: "",
     className: styles.saveImage,
@@ -90,7 +86,7 @@ const Generation = () => {
         {/* Left : Logo */}
         <div className="flex space-x-4 font-bold text-3xl ">
           <a
-            href={navLinks[0].url}
+            href='/'
             className="flex items-center dark:bg-clip-text 
               dark:bg-gradient-to-r 
               dark:from-[#60DDD9] 
@@ -100,7 +96,7 @@ const Generation = () => {
             {Logo && (
               <img src={darkMode ? DLogo : Logo} alt="logo" className="mr-2" />
             )}
-            {navLinks[0].name}
+            Synapse
           </a>
         </div>
 

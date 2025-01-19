@@ -65,7 +65,7 @@ const Canvas = React.forwardRef<ExportFunctions, CanvasProps>(({ mermaidCode }, 
     if (containerRef.current) {
       try {
         const canvas = await html2canvas(containerRef.current);
-        const image = canvas.toDataURL("image/jpeg", 1.0); // 1.0 is the quality
+        const image = canvas.toDataURL("image/jpeg", 1.0); 
 
         const link = document.createElement("a");
         link.href = image;
