@@ -1,27 +1,18 @@
+.saveLightImage {
+  color: white;
+  background-color: #2b59a4;
+  padding: 15px 50px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
 .saveImage {
-    color: white;
-    background-color: #2B59A4;
-    padding: 15px 50px;
-    border-radius: 10px;
-    box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to right, #60ddd9, #347775);
+  padding: 15px 35px;
+  border-radius: 70px;
 }
-
-.finish {
-    color: white;
-    background-color: #FE5A4E;
-    padding: 15px 50px;
-    border-radius: 10px;
-    box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-}
-
 
 @media (prefers-color-scheme: dark) {
-    .saveImage {
-        background: linear-gradient(to right, #60DDD9, #347775);
-    }
-
- }
+}

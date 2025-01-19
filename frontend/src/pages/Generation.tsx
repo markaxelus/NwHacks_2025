@@ -14,13 +14,13 @@ const navLinks = [
   {
     name: "Save as...",
     url: "",
-    className: styles.saveImage,
+    className: `${styles.saveImage}`,
   },
 ];
 
 const Generation = () => {
   const location = useLocation();
-  const darkMode = useDarkMode();
+  const { darkMode } = useDarkMode();
 
   // Initialize fileName from location state or fallback to an empty string
   const [fileName, setFileName] = useState<string>(
@@ -33,6 +33,11 @@ const Generation = () => {
   // Create a ref to access export functions in Canvas
   const canvasRef = useRef<ExportFunctions>(null);
 
+  if (!darkMode) {
+    navLinks[0].className = `${styles.saveLightImage}`;
+  } else {
+    navLinks[0].className = `${styles.saveImage}`;
+  }
   // Handle file upload and store fileName
   const handleFileUpload = (file: File) => {
     setUploadedFile(file);
@@ -104,15 +109,14 @@ const Generation = () => {
         className={`fixed top-0 w-full flex justify-between items-center py-4 pl-10 font-primary bg-white shadow-md z-50 dark:bg-black`}
       >
         {/* Left : Logo */}
-        <div className="flex space-x-4 font-bold text-3xl ">
-          <a
-            href='/'
-            className="flex items-center dark:bg-clip-text 
+        <div
+          className="flex space-x-4 font-bold text-3xl dark:bg-clip-text 
               dark:bg-gradient-to-r 
               dark:from-[#60DDD9] 
               dark:to-[#347775]
               dark:text-transparent"
-          >
+        >
+          <a href="/" className="flex items-center ">
             {Logo && (
               <img src={darkMode ? DLogo : Logo} alt="logo" className="mr-2" />
             )}
@@ -127,9 +131,12 @@ const Generation = () => {
           {navLinks.map((link, index) => {
             if (link.name.trim() === "Save as...") {
               return (
-                <div key={index} className="relative group dark:bg-gradient-to-r 
+                <div
+                  key={index}
+                  className="relative group dark:bg-gradient-to-r 
           dark:from-[#60DDD9] 
-          dark:to-[#347775] rounded-3xl  ">
+          dark:to-[#347775] rounded-lg  "
+                >
                   <button
                     className={`text-md ${
                       link.className || ""
