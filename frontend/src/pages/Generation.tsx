@@ -123,11 +123,13 @@ const Generation = () => {
         <div></div>
 
         {/* Right : Navigation */}
-        <div className="flex space-x-8 mr-12">
+        <div className="flex space-x-8 mr-12 ">
           {navLinks.map((link, index) => {
             if (link.name.trim() === "Save as...") {
               return (
-                <div key={index} className="relative group">
+                <div key={index} className="relative group dark:bg-gradient-to-r 
+          dark:from-[#60DDD9] 
+          dark:to-[#347775] rounded-3xl  ">
                   <button
                     className={`text-md ${
                       link.className || ""
@@ -139,7 +141,7 @@ const Generation = () => {
                   </button>
                   {/* Dropdown Menu */}
                   <div
-                    className="absolute right-0 top-full  w-32 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg hidden group-hover:block"
+                    className="absolute right-0 top-full  w-32 bg-white dark:bg-gray-800 border border-gray-200  rounded-md shadow-lg hidden group-hover:block"
                     role="menu"
                     aria-label="Save as options"
                   >
