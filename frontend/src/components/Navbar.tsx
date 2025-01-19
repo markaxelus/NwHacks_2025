@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from '../assets/MindMap.png'
-
+import { useLocation } from 'react-router-dom'
 import styles from '../styles/Navbar.module.css'
 
 const navLinks = [
@@ -21,10 +21,22 @@ const navLinks = [
     }
 ]
 
+const hideNav = [
+    '/generation'
+]
+
 
 const Navbar = () => {
+    const location = useLocation()
+
+    const shouldHideNav = hideNav.includes(location.pathname)
+
+    if (shouldHideNav) {
+        return null;
+    }
     
     return (
+
         <nav className={`fixed top-0 w-full flex justify-between items-center py-4 pl-10 font-primary bg-white `}>
             {/* Left : Logo */}
             <div className='flex space-x-4 font-bold text-3xl '>

@@ -1,7 +1,20 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import ArrowUp from '../assets/up_arrow.png';
 
+const hideArrow = [
+  '/generation',
+  '/upload'
+];
+
 const UpArrow = () => {
+  const location = useLocation();
+
+  const shouldHideArrow = hideArrow.includes(location.pathname);
+
+  if (shouldHideArrow) {
+    return null;
+  }
   
   return (
     <div>
