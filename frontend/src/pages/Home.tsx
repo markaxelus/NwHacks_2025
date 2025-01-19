@@ -6,6 +6,8 @@ import MDLogo from "../assets/dark/2_D_Mind_Map.png";
 import ArrowDown from "../assets/arrow-down.png";
 import { useNavigate } from "react-router-dom";
 
+import Navbar from "../components/Navbar";
+
 const Home = () => {
   const navigate = useNavigate();
 
@@ -14,8 +16,10 @@ const Home = () => {
   return (
     <div
       id="home"
-      className="flex justify-center items-center pb-[2rem] h-[110vh] flex-col space-y-12 text-center"
+      className="flex justify-center items-center pb-[2rem] h-[110vh] flex-col space-y-12 text-center 
+      "
     >
+      <Navbar />
       <h1 className="
       font-bold text-4xl dark:text-transparent 
         dark:bg-clip-text 

@@ -30,7 +30,10 @@ const UpArrow = () => {
             />
 
             {/* Tooltip */}
-            <div className="absolute bottom-full right-0 mb-8 text-white text-sm px-8 py-1  opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-32 rounded-full border-2 border-black bg-black">
+            <div className="absolute bottom-full right-0 mb-8 text-white text-sm px-8 py-1  opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-32 rounded-full border-2 border-black bg-black dark:bg-gradient-to-r 
+          dark:from-[#60DDD9] 
+          dark:to-[#347775]
+          dark:invert">
               Go to top
             </div>
           </div>

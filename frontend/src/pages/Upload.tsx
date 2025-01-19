@@ -83,23 +83,27 @@ const Upload = () => {
 
   return (
     <div
-      className={`${styles.uploadPageContainer} h-[100vh] flex justify-center items-center text-center`}
+      className={`${styles.uploadPageContainer} h-[100vh] flex justify-center items-center text-center `}
     >
       <div className="w-full h-full justify-center items-center flex flex-col space-y-3">
-        <h1 className="font-bold text-4xl ">Welcome to Synapse</h1>
+        <h1 className="font-bold text-4xl dark:text-transparent 
+                dark:bg-clip-text 
+                dark:bg-gradient-to-r 
+                dark:from-[#60DDD9] 
+                dark:to-[#347775]">Welcome to Synapse</h1>
 
         {/* Upload PDF Box */}
         {uploadedFile ? (
           <div className="bg-white w-5/12 rounded-xl shadow-xl text-left p-6 space-y-8">
-            <div className="space-y-2">
-              <h2 className="font-bold text-xl">Upload a PDF</h2>
+            <div className="space-y-2 filter dark:invert ">
+              <h2 className="font-bold text-xl ">Upload a PDF</h2>
               <p>
                 Please upload a file in pdf format and make sure the file size
                 is under 5 MB.
               </p>
             </div>
 
-            <div className="flex bg-pdfbg h-16 items-center px-4 py-2 rounded-xl space-x-3">
+            <div className="flex bg-pdfbg h-16 items-center px-4 py-2 rounded-xl space-x-3 filter dark:invert">
               <img
                 src={Trash}
                 alt="Delete"
@@ -129,9 +133,9 @@ const Upload = () => {
             {error && <p className="text-red-500">{error}</p>}
           </div>
         ) : (
-          <div className="bg-white w-5/12 rounded-xl shadow-xl text-left p-6 space-y-8">
-            <div className="space-y-2">
-              <h2 className="font-bold text-xl">Upload a PDF</h2>
+          <div className="bg-white w-5/12 rounded-xl shadow-xl text-left p-6 space-y-8 ">
+            <div className="space-y-2 filter filter dark:invert">
+              <h2 className="font-bold text-xl ">Upload a PDF</h2>
               <p>
                 Please upload a file in pdf format and make sure the file size
                 is under 5 MB.
@@ -141,7 +145,7 @@ const Upload = () => {
             <div className="flex flex-col font-bold border-dashed border-2 border-gray-900 rounded-xl h-24 hover:border-gray-400">
               <label
                 htmlFor="upload"
-                className="flex w-full h-24 items-center justify-center text-center bg-gray-900/[.10] px-8 py-2 text-left cursor-pointer"
+                className="flex w-full h-24 items-center justify-center text-center bg-gray-900/[.10] px-8 py-2 text-left cursor-pointer filter dark:invert"
               >
                 Drop file or Browse <br />
                 Format: pdf &amp; Max file size: 5MB
