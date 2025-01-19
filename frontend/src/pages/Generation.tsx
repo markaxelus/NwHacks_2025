@@ -81,21 +81,19 @@ const Generation = () => {
       */}
       <div className="flex h-screen">
         {/* Left Section: editor */}
-          <div className="w-1/2 ide-background">
-            <div className="h-45%]">
+          <div className="w-[1/2] z-10">
+            <div className="h-[70%] ">
               <Ide code={code} setCode={setCode} />
             </div>
-
-            <div className=" ">
-              
+            <div className="h-[30%] ">
               <ChatBox />
             </div>
           </div>
 
         {/* Container where the Diagram and Chatbox for AI prompts will be placed */}
 
-        <div className="w-1/2 mx-8 mt-28 mb-8 bg-gray-900/[0.1] rounded-3xl">
-          <div className="h-[85%]">
+        <div className="w-1/2 bg-gray-900/[0.1] ">
+          <div className="w-full h-full flex justify-center items-center ">
             <Canvas mermaidCode={mermaidCode}/>
           </div>
         </div>  

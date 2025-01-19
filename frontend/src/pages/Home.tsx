@@ -29,7 +29,7 @@ const Home = () => {
         Generate a Diagram
       </button>
 
-      <div className="pt-12">
+      <div className="pt-4">
         <a href="#process"> 
           <button className="border-2 border-black p-3 rounded-full">
             <img
