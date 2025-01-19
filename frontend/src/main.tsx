@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import  Navbar  from './components/Navbar'
 import UpArrow from './components/UpArrow'
+import { DarkModeProvider } from './components/DarkMode'
 
 import Home from './pages/Home' 
 import Process from './pages/Process'
@@ -17,26 +18,28 @@ import './styles/global.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <DarkModeProvider>
+      <BrowserRouter>
 
-      <Navbar />
+        <Navbar />
 
-      <Routes>
-        <Route 
-          path = '/'
-          element= {
-            <>
-              <Home />
-              <Process />
-              <KeyFeatures />
-              <Info />
-            </>
-          }
-        />
-        <Route path = '/upload' element = {<Upload />} />
-        <Route path = '/generation' element = {<Generation />} />
-      </Routes>
-      <UpArrow />
-    </BrowserRouter>
+        <Routes>
+          <Route 
+            path = '/'
+            element= {
+              <>
+                <Home />
+                <Process />
+                <KeyFeatures />
+                <Info />
+              </>
+            }
+          />
+          <Route path = '/upload' element = {<Upload />} />
+          <Route path = '/generation' element = {<Generation />} />
+        </Routes>
+        <UpArrow />
+      </BrowserRouter>
+    </DarkModeProvider>
   </StrictMode>,
 )

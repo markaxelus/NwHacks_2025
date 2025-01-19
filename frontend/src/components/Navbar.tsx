@@ -10,15 +10,14 @@ const navLinks = [
         icon: Logo,
     },
     {
+        name: 'Mode',
+        className: styles.login,
+    },
+    {
         name: 'Explore Product',
         url: '/generation',
         className: styles.exploreproduct,
     },
-    {
-        name: 'Login',
-        url: '/login',
-        className: styles.login,
-    }
 ]
 
 const hideNav = [
@@ -37,7 +36,7 @@ const Navbar = () => {
     
     return (
 
-        <nav className={`fixed top-0 w-full flex justify-between items-center py-4 pl-10 font-primary bg-white `}>
+        <nav className={`fixed top-0 w-full flex justify-between items-center py-4 pl-10 font-primary bg-white dark:bg-black `}>
             {/* Left : Logo */}
             <div className='flex space-x-4 font-bold text-3xl '>
                 <a href={navLinks[0].url}
@@ -45,7 +44,7 @@ const Navbar = () => {
                 >
                 {navLinks[0].icon && (
                     <img src={navLinks[0].icon} alt='logo' 
-                        className='mr-2' />
+                        className='mr-2 dark:' />
                 )}
                 {navLinks[0].name}
                 </a>

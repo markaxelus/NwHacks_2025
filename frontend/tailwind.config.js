@@ -16,6 +16,9 @@ export default {
       primary: ["ClashGrotesk", "sans-serif"], 
     },
 	  extend: {
+      backgroundImage: {
+        'gradient-overlay': 'linear-gradient(10% #60DDD9, 84% #347775)',
+      },
       colors:
       {
         'primary': '#000000',

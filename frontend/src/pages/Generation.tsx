@@ -30,10 +30,13 @@ const Generation = () => {
 
     const [mermaidCode, setMermaidCode] = useState<string>(`
       graph TD;
-        A[Start] --> B{Decision};
-        B -->|Yes| C[Do Something];
-        B -->|No| D[Do Nothing];
-        C --> D;
+    IT_Kit -->|consists of| Laptop;
+    IT_Kit -->|consists of| Monitor;
+    IT_Kit -->|consists of| Headphones;
+    IT_Kit -->|consists of| Keyboard;
+    IT_Kit -->|consists of| Mouse;
+    Monitor -->|is a| Dell_Monitor;
+    Dell_Monitor -->|with| Docking_Station;
     `);
 
 

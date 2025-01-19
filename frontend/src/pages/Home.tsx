@@ -1,11 +1,16 @@
-import React, { useEffect } from "react";
-import Logo from "../assets/MindMap.png";
+import React, { useEffect, useState } from "react";
+import { useDarkMode } from "../components/DarkMode";
+import TLogo from "../assets/MindMap.png";
+import TDLogo from "../assets/dark/2_D_Mind_Map.png";
+import MLogo from "../assets/MindMap.png";
+import MDLogo from "../assets/dark/2_D_Mind_Map.png";
 import ArrowDown from "../assets/arrow-down.png";
 import { useNavigate } from "react-router-dom";
 
-
 const Home = () => {
   const navigate = useNavigate();
+  
+  const darkMode = useDarkMode();
 
   return (
     <div
@@ -13,7 +18,7 @@ const Home = () => {
       className="flex justify-center items-center pb-[2rem] h-[110vh] flex-col space-y-12 text-center"
     >
       <h1 className="font-bold text-4xl">Welcome to Synapse</h1>
-      <img src={Logo} alt="logo" className="w-[100px] h-[100px]" />
+      <img src={darkMode ? MDLogo : MLogo} alt="logo" className="w-[100px] h-[100px]" />
 
       <div className="font-bold">
         <p>
@@ -30,7 +35,7 @@ const Home = () => {
       </button>
 
       <div className="pt-4">
-        <a href="#process"> 
+        <a href="#process">
           <button className="border-2 border-black p-3 rounded-full">
             <img
               src={ArrowDown}

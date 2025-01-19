@@ -10,11 +10,22 @@
   color: inherit;
   font-family: "ClashGrotesk", sans-serif;
 }
+
 @font-face {
   font-family: "ClashGrotesk";
-  src: url("./fonts/ClashGrotesk-Regular.otf") format("otf");
+  src: url("./fonts/ClashGrotesk-Regular.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
+}
+
+@media (prefers-color-scheme: light) {
+  html {
+    color-scheme: light;
+  }
+  body {
+    background-color: white; /* Light background for light mode */
+    color: black; /* Dark text for light mode */
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,16 +33,11 @@
     color-scheme: dark;
   }
   body {
-    background-color: black;
-    color: white;
+    background-color: black; /* Dark background for dark mode */
+    color: white; /* Light text for dark mode */
   }
 }
 
-
 html {
   scroll-behavior: smooth;
-}
-
-.ide-background {
-  background-color: #f7f9fb;
 }
