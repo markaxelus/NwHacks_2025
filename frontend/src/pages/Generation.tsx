@@ -211,10 +211,10 @@ const Generation = () => {
       <div className="flex h-screen">
         {/* Left Section: editor */}
         <div className="w-1/2 z-10 ">
-          <div className="h-[70%] ">
+          <div className="h-[80%] ">
             <Ide code={mermaidCode} setCode={setMermaidCode} />
           </div>
-          <div className="h-[30%] m-4 pb-8 ">
+          <div className="h-[20%] m-4 pb-8 ">
             <ChatBox regenerate={fetchDiagramOutput} fileName={fileName} />
           </div>
         </div>
