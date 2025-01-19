@@ -1,7 +1,7 @@
-![main_page](./image/main-page.jpg)
-
 ## 🚀 Tech Stack
 ![architecture diagram](./image/architecture-diagram.png)
+
+![main_page](./image/main-page.jpg)
 
 ## ☁️ Inspiration
 In the information-driven era, professionals and organizations frequently grapple with vast amounts of data encapsulated within PDF documents. Extracting meaningful insights and visual representations from these documents is often time-consuming and labor-intensive. We envisioned Synapse as a solution to bridge this gap by leveraging artificial intelligence to streamline the extraction and visualization process. Inspired by the need for efficiency and clarity, **Synapse** empowers users to transform dense PDF content into easily digestible summaries and intuitive diagrams, enhancing comprehension and decision-making.
