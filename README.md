@@ -1,10 +1,7 @@
-## 🚀 Tech Stack
-![architecture diagram](./image/architecture-diagram.png)
-
-![main_page](./image/main-page.jpg)
-
 ## ☁️ Inspiration
 In the information-driven era, professionals and organizations frequently grapple with vast amounts of data encapsulated within PDF documents. Extracting meaningful insights and visual representations from these documents is often time-consuming and labor-intensive. We envisioned Synapse as a solution to bridge this gap by leveraging artificial intelligence to streamline the extraction and visualization process. Inspired by the need for efficiency and clarity, **Synapse** empowers users to transform dense PDF content into easily digestible summaries and intuitive diagrams, enhancing comprehension and decision-making.
+
+![main_page](./image/main-page.jpg)
 
 ## 📊 What it does
 Synapse is an intelligent PDF parsing tool designed to revolutionize how users interact with PDF documents. Upon receiving a PDF as input, Synapse performs the following actions:
@@ -18,6 +15,12 @@ Synapse is an intelligent PDF parsing tool designed to revolutionize how users i
 **User Interface Display**: Renders the generated Mermaid diagrams on an intuitive and user-friendly interface, allowing users to visualize the structure and key points of their PDFs effortlessly.
 
 By automating these processes, Synapse significantly reduces the time and effort required to analyze and comprehend PDF documents, making it an invaluable tool for professionals across various industries.
+
+## Synapse Demo
+[Demo](https://github.com/user-attachments/assets/e631cc65-5493-42a9-b086-ad81667fa8ce)
+
+## 🚀 Tech Stack
+![architecture diagram](./image/architecture-diagram.png)
 
 ## 💻 How we built it
 **1. Frontend Development:**
