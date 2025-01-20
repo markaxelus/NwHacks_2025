@@ -104,7 +104,7 @@ const Canvas = React.forwardRef<ExportFunctions, CanvasProps>(({ mermaidCode }, 
   }));
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full pt-24">
       <div
         ref={containerRef}
         className="flex justify-center items-center w-full h-full"

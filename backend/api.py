@@ -25,3 +25,17 @@ async def upload_pdf(file: UploadFile = File(...)):
     with open(file_path, "wb") as f:
         f.write(file.file.read())
     
+"""   try:
+        extract_text(file_path, TEXT_OUTPUT_DIR)
+        extract_images(file_path, IMAGE_OUTPUT_DIR)
+
+        # Get extracted files
+        text_files = os.listdir(TEXT_OUTPUT_DIR)
+        image_files = os.listdir(IMAGE_OUTPUT_DIR)
+
+        return {
+            "text_files": text_files,
+            "image_files": image_files
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Processing failed: {str(e)}") """
